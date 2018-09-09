@@ -3,3 +3,12 @@
 <h3>Date Range Submitted: <%= @presenter.start_date%> - <%=@presenter.end_date%></h3>
 <br>
 <h3>Most Dangerous Day: <%= @presenter.most_dangerous_day %></h3>
+
+<div class="asteroids">
+  <% @presenter.asteroids_in_date_range.each do |asteroid| %>
+  <ul class="asteroid">
+    <li class="name">Name: <%= asteroid.name %></li>
+    <li class="neo_ref_id">NEO Reference ID: <%= asteroid.neo_ref_id %></li>
+  </ul>
+  <% end %>
+</div>

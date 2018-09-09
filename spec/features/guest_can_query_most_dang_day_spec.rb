@@ -23,20 +23,24 @@ describe 'a guest user visiting the root page' do
     # And I should see a heading for the most dangerous day in that range "January 1, 2018"
     expect(page).to have_content("Most Dangerous Day: September 11, 2018")
     # And I should see 3 asteroids in that list
-    expect(page).to have_css(".asteriods", count: 2)
+    expect(page).to have_css(".asteroid", count: 3)
 
-    within(first(".asteriod")) do
-      # And I should see "Name: (2014 KT76)"
+    within(first(".asteroid")) do
+      # And I should see "Name: (2008 KZ5)"
       expect(page).to have_content("Name: (2008 KZ5)")
-      # And I should see "NEO Reference ID: 3672906"
+      # And I should see "NEO Reference ID: 3412889"
       expect(page).to have_content("NEO Reference ID: 3412889")
     end
+  
+    # And I should see "Name:  350872 (2002 PG43)"
+    expect(page).to have_content("Name: 350872 (2002 PG43)")
+    # And I should see "NEO Reference ID: 3566605"
+    expect(page).to have_content("NEO Reference ID: 3566605")
 
-    within(second(".asteriod")) do
-      # And I should see "Name: (2001 LD)"
-      expect(page).to have_content("Name: (2010 CO1)")
-      # And I should see "NEO Reference ID: 3078262"
-      expect(page).to have_content("NEO Reference ID: 3507718")
-    end
+
+    # And I should see "Name:  350872 (2002 PG43)"
+    expect(page).to have_content("Name: 350872 (2002 PG43)")
+    # And I should see "NEO Reference ID: 3566605"
+    expect(page).to have_content("NEO Reference ID: 3566605")
   end
 end 

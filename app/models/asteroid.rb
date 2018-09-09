@@ -1,10 +1,14 @@
 class Asteroid 
-  attr_reader :name, :id, :day
+  attr_reader :name, :neo_ref_id, :day
 
   def initialize(object)
     @name = object[1].first[:name]
     @neo_ref_id = object[1].first[:neo_reference_id]
     @object = object
+  end
+
+  def asteroid 
+    @object[1].first
   end
 
   def day 

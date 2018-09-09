@@ -12,23 +12,29 @@ class SearchPresenter
   def end_date 
     @dates[:end_date].to_date.strftime("%B %e, %Y")
   end
+  
+  def asteroids_in_date_range
+    raw_asteroids.map do |asteroid|
+      asteroid
+    end
+  end
+  
+  def most_dangerous_day 
+    raw_asteroids.keep_if do |raw_asteroid|
+      return raw_asteroid.day if raw_asteroid.dangerous?
+    end
+  end
+  
+  private
+  attr_reader :dates
+  
+  def service
+    NasaService.new(dates)
+  end
 
-  def asteroids
+  def raw_asteroids
     service.near_earth_objects.map do |object|
       Asteroid.new(object) 
     end
-  end
-
-  def most_dangerous_day 
-    asteroids.keep_if do |asteroid|
-      return asteroid.day if asteroid.dangerous?
-    end
-  end
-
-  private
-  attr_reader :dates
-
-  def service
-    NasaService.new(dates)
   end
 end
